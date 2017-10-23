@@ -1,5 +1,12 @@
 # provectus-challenge
 
+Usage to task2
+
+    python load_data.py alice_crm_dump.csv --domain alice
+    python load_data.py bob_crm_dump.csv --domain bob
+    python load_data.py carol_crm_dump.csv --domain carol
+
+
 ## task1
 
 Given two tables, person and relationship,  person table has id and name columns, relationship table has person_id and friend_id:
