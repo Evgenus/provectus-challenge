@@ -32,20 +32,20 @@ def insert_company(session, name, revenue, domain, origin):
 @click.option(
     "--domain", type=str, required=True, help="customer name or CRM url")
 @click.argument(
-    "input", type=click.File(encoding="utf-8"), metavar="CSV")
-def main(database, domain, input):
+    "input_file", type=click.File(encoding="utf-8"), metavar="CSV")
+def main(database, domain, input_file):
     engine = create_engine('sqlite:///' + database)
     Base.metadata.create_all(engine)
     Session = sessionmaker()
     Session.configure(bind=engine)
     session = Session()
-    with input:
-        for row in read_csv(input):
+    with input_file:
+        for row in read_csv(input_file):
             insert_company(
                 session=session,
                 name=row['company name'],
                 revenue=row['revenue'],
-                origin=input.name,
+                origin=input_file.name,
                 domain=domain,
             )
     session.commit()
