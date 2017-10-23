@@ -1,32 +1,12 @@
 import csv
-from datetime import datetime
 
 import click
+
 from sqlalchemy import create_engine
-from sqlalchemy import Column
-from sqlalchemy import Integer
-from sqlalchemy import String
-from sqlalchemy import DateTime
-from sqlalchemy import Numeric
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-
-Base = declarative_base()
-
-
-class Company(Base):
-
-    __tablename__ = 'companies_revenue'
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    revenue = Column(Numeric(16, 2), nullable=True)
-    revenue_raw = Column(String, nullable=True)
-    added_at = Column(DateTime, default=datetime.now)
-    domain = Column(String, nullable=False)
-    origin = Column(String, nullable=False)
-
+from model import Base
+from model import Company
 
 def read_csv(stream):
     reader = csv.DictReader(stream)
